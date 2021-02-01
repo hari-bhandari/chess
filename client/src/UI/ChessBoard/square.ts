@@ -8,6 +8,6 @@ class Square {
         this.y = y
         this.canvasCoord = canvasCoord
         this.pieceOnThisSquare = pieceOnThisSquare
-    }
+    }a
 }
 export default Square
