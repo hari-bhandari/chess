@@ -11,6 +11,14 @@ class ChessPiece {
         this.color = color
         this.id = id
     }
+    setSquare(){
+        // assign this piece to specific square
+        //this.square=square
+    }
+    getSquare(){
+        //get the current square piece is on
+        //undefined if the piece is not on the squre
+    }
 }
 
 
