@@ -1,4 +1,4 @@
-import * as Chess from 'chess.js'
+import * as Chess from '../node_modules/chess.js/chess'
 import {BehaviorSubject} from "rxjs";
 
 const chess=new Chess();
