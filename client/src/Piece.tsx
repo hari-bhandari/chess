@@ -1,11 +1,15 @@
 import React from 'react';
 interface props{
-    piece:any
+    piece:PieceInterface
 }
-const Piece:React.FC<props> = ({piece}) => {
+interface PieceInterface {
+    type:string,
+    color:string
+}
+const Piece:React.FC<props> = ({piece:{type,color}}) => {
     return (
         <div>
-            {piece.type}
+            {type}
         </div>
     );
 };
