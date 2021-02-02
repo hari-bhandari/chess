@@ -3,7 +3,7 @@ import {Image} from "react-konva";
 import logo from '../../logo.svg'
 const Piece = (props:any) => {
     return (
-        <Image x={100} y={200} image={undefined}/>
+        <Image draggable image={undefined}/>
     );
 };
 
