@@ -24,10 +24,8 @@ const themeCommon ={
         light: '#ffffff',
         navbar: '#25315b',
         hamButton: '#ffffff',
-    }
+    },
+    ...WoodBoard
 
 }
-export const brown={
-
-}
-
+export default themeCommon
