@@ -14,8 +14,18 @@ const PieceContainer=styled.div`
   &:hover{
     cursor: move;
   }
+  display: flex;
+  justify-content: center;
+  justify-items: center;
   img{
-    width: 100%;
+    max-width: 90%;
+    max-height: 90%;
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
   }
 `
 const Piece:React.FC<props> = ({piece:{type,color}}) => {
