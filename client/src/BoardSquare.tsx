@@ -1,9 +1,15 @@
 import React from 'react';
 import Square from "./Square";
-const BoardSquare = () => {
+import Piece from "./Piece";
+interface props{
+    piece:any
+}
+const BoardSquare:React.FC<props> = ({piece}) => {
     return (
         <div>
-            <Square></Square>
+            <Square>
+                {piece&&<Piece piece={piece}/>}
+            </Square>
             
         </div>
     );

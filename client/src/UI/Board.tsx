@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import BoardSquare from "../BoardSquare";
 interface propsInterface {
     board:[]|null
 }
@@ -17,7 +18,10 @@ const Square=styled.div`
 const Board:React.FC<propsInterface> = ({board}) => {
     return (
         <BoardContainer>
-            {board?.map((piece,i)=><Square key={i}><p>{JSON.stringify(piece)}</p></Square>)}
+            {board?.flat().map((piece,i)=><Square key={i}>
+                <BoardSquare
+                piece={piece}
+            /></Square>)}
         </BoardContainer>
     );
 };

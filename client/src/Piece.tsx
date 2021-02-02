@@ -1,13 +1,13 @@
 import React from 'react';
 interface props{
-    children:any
+    piece:any
 }
-const Square:React.FC<props> = () => {
+const Piece:React.FC<props> = () => {
     return (
         <div>
-
+            
         </div>
     );
 };
 
-export default Square;
+export default Piece;
