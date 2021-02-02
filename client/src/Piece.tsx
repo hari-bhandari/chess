@@ -1,5 +1,5 @@
 import React from 'react';
-import file from './assets/bB.svg'
+import {useDrag} from 'react-dnd'
 import styled from "styled-components";
 interface props{
     piece:PieceInterface
@@ -29,9 +29,12 @@ const PieceContainer=styled.div`
   }
 `
 const Piece:React.FC<props> = ({piece:{type,color}}) => {
+    const [ ,drag]=useDrag({
+        item:{type:'piece',id:`${type}_${color}`},
+    })
     const path=require(`./assets/${color.toLowerCase()}${type.toUpperCase()}.svg`).default
     return (
-        <PieceContainer>
+        <PieceContainer ref={drag}>
             <img src={path} alt={type}/>
         </PieceContainer>
     );
