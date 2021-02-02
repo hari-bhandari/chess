@@ -11,16 +11,18 @@ interface PieceInterface {
 const PieceContainer=styled.div`
   width: 100%;
   height: 100%;
+  &:hover{
+    cursor: move;
+  }
   img{
     width: 100%;
   }
 `
 const Piece:React.FC<props> = ({piece:{type,color}}) => {
     const path=require(`./assets/${color.toLowerCase()}${type.toUpperCase()}.svg`).default
-    console.log(path)
     return (
         <PieceContainer>
-            <img src={path} alt=""/>
+            <img src={path} alt={type}/>
         </PieceContainer>
     );
 };
