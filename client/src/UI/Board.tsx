@@ -16,22 +16,19 @@ const Square=styled.div`
 `
 
 const Board:React.FC<propsInterface> = ({board}) => {
-    function getXYPosition(i) {
-        const x = turn === 'w' ? i % 8 : Math.abs((i % 8) - 7)
-        const y =
-            turn === 'w'
-                ? Math.abs(Math.floor(i / 8) - 7)
-                : Math.floor(i / 8)
+    function getXYPosition(i:number) {
+        const x = i% 8
+        const y = Math.abs(Math.floor(i / 8) - 7)
         return { x, y }
     }
 
-    function isBlack(i) {
+    function isBlack(i:number) {
         const { x, y } = getXYPosition(i)
         return (x + y) % 2 === 1
     }
     return (
         <BoardContainer>
-            {board?.flat().map((piece,i)=><Square key={i}>
+            {board?.flat().map((piece,i:number)=><Square key={i}>
                 <BoardSquare
                 piece={piece}
                 black={isBlack(i)}

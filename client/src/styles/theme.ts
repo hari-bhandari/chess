@@ -1,20 +1,33 @@
-const theme ={
+interface chessColour{
+    white:string,
+    black:string
+}
+const GrayBoard:chessColour={
+    white:'#D9D9D9',
+    black:'#929292'
+}
+const BrownBoard:chessColour={
+    white:'#EBECD0',
+    black:'#B68860'
+}
+const GreenBoard:chessColour={
+    white:'#EBECD0',
+    black:'#779556'
+}
+const WoodBoard:chessColour={
+    white:'#BA9C78',
+    black:'#725238'
+}
+
+const themeCommon ={
     colors: {
         light: '#ffffff',
         navbar: '#25315b',
         hamButton: '#ffffff',
-        dark: '#010b1a',
-        darkLight: '#636b83',
-        mayerPurple: '#614685',
-        darkBlue: '#041732',
-        darkBlueLighter: '#25315b',
-        yellow: '#8579F9',
-        gray: '#8892b0',
-        blueGray: '#545677',
-        lightGray: '#D1D1D1',
-        clearlinkBlue: '#1990ff'
-    },
+    }
+
+}
+export const brown={
 
 }
 
-export default theme
