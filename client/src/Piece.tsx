@@ -4,7 +4,8 @@ import styled from "styled-components";
 
 interface props {
     piece: PieceInterface,
-    position:string
+    position?:string,
+    promote?:boolean
 }
 
 interface PieceInterface {
@@ -12,7 +13,7 @@ interface PieceInterface {
     color: string
 }
 
-const PieceContainer = styled.div<{isDragging:boolean}>`
+const PieceContainer = styled.div<{isDragging?:boolean}>`
   width: 100%;
   height: 100%;
   opacity: ${props => props.isDragging?0:1};
@@ -30,7 +31,8 @@ const PieceContainer = styled.div<{isDragging:boolean}>`
    
   }
 `
-const Piece: React.FC<props> = ({piece: {type, color},position}) => {
+const Piece: React.FC<props> = ({piece: {type, color},position,promote}) => {
+
     const [{isDragging}, drag, preview] = useDrag({
         item: {type: 'piece', id: `${position}_${type}_${color}`},
         collect:(monitor => {
@@ -38,6 +40,17 @@ const Piece: React.FC<props> = ({piece: {type, color},position}) => {
         })
     })
     const path = require(`./assets/${color.toLowerCase()}${type.toUpperCase()}.svg`).default
+
+    if(promote){
+        return (
+            <>
+                <PieceContainer >
+                    <img src={path} alt={type}/>
+                </PieceContainer>
+            </>
+        )
+    }
+
     return (
         <>
             <DragPreviewImage connect={preview} src={path}/>

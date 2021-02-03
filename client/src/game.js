@@ -5,6 +5,7 @@ const chess=new Chess(promotion);
 export const gameSubject=new BehaviorSubject({
     board:chess.board()
 });
+
 export const initGame=()=>{
     updateGame()
 }
