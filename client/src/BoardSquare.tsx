@@ -25,6 +25,9 @@ const BoardSquare:React.FC<props> = ({piece,black,getPosition}) => {
             handleMove(FromPosition,getPosition)
         }
     })
+    const closeTab=()=>{
+        setPromotion(null)
+    }
     useEffect(()=>{
        // @ts-ignore
         const subscribe=gameSubject.subscribe(({pendingPromotion})=>pendingPromotion&&pendingPromotion.to===getPosition?setPromotion(pendingPromotion):setPromotion(null))
@@ -32,7 +35,7 @@ const BoardSquare:React.FC<props> = ({piece,black,getPosition}) => {
     },[])
     return (
         <SquareContainer ref={drop}>
-            {promotion?<Promote/>:
+            {promotion?<Promote promotion={promotion} closeTab={closeTab}/>:
             <Square black={black}>
                 {piece&&<Piece piece={piece} position={getPosition}/>}
             </Square>}

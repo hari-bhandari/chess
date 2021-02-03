@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-const PromoteContainer=styled.div`
+const PromoteContainer=styled.div<{bottom:boolean}>`
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -8,11 +8,16 @@ const PromoteContainer=styled.div`
   width: 200%;
   height: 200%;
   background-color: aquamarine;
+  transform: ${props =>props.bottom?'translateY(-50%)':'' };
+  span{
+    font-size: 15px;
+  }
+  top: 0;
 `
-const Promote = () => {
+const Promote:React.FC<{promotion:any,closeTab:()=>void}> = ({promotion,closeTab}) => {
     return (
-        <PromoteContainer>
-            
+        <PromoteContainer bottom={false}>
+        <span onClick={closeTab}>X</span>
         </PromoteContainer>
     );
 };
