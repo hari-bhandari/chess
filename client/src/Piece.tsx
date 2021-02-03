@@ -5,7 +5,8 @@ import styled from "styled-components";
 interface props {
     piece: PieceInterface,
     position?:string,
-    promote?:boolean
+    promote?:boolean,
+    onClickPromotion?:()=>void
 }
 
 interface PieceInterface {
@@ -30,7 +31,7 @@ const PieceContainer = styled.div<{isDragging?:boolean}>`
     max-height: 100%;
   }
 `
-const Piece: React.FC<props> = ({piece: {type, color},position,promote}) => {
+const Piece: React.FC<props> = ({piece: {type, color},position,promote,onClickPromotion}) => {
 
     const [{isDragging}, drag, preview] = useDrag({
         item: {type: 'piece', id: `${position}_${type}_${color}`},

@@ -1,6 +1,13 @@
 import React from 'react';
 import styled from "styled-components";
 import Piece from "./Piece";
+import {move} from "./game";
+
+interface Promotion {
+    from: string,
+    to: string,
+    color: string
+}
 
 const PromoteContainer = styled.div<{ bottom: boolean }>`
   position: relative;
@@ -22,17 +29,16 @@ const PromoteContainer = styled.div<{ bottom: boolean }>`
     justify-items: center;
     background-color: grey;
   }
-  
+
   top: 0;
 `
-const Promote: React.FC<{ promotion: any, closeTab: () => void }> = ({promotion, closeTab}) => {
-
+const Promote: React.FC<{ promotion: Promotion, closeTab: () => void }> = ({promotion:{from,to,color}, closeTab}) => {
+    const promotionPieces=["q","b","r","n"]
     return (
         <PromoteContainer bottom={false}>
-            <Piece piece={{color: "w", type: "q"}}/>
-            <Piece piece={{color: "w", type: "b"}}/>
-            <Piece piece={{color: "w", type: "r"}}/>
-            <Piece piece={{color: "w", type: "n"}}/>
+            {promotionPieces.map((p,i)=>(
+                <div><Piece piece={{color,type:p}}/></div>
+            ))}
             <span onClick={closeTab}>X</span>
 
         </PromoteContainer>

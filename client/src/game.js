@@ -10,9 +10,9 @@ export const initGame=()=>{
     updateGame()
 }
 export function handleMove(from,to){
-    const promotion=chess.moves({verbose:true}).filter(m=>m.promotion)
-    if(promotion.some(p=>`${p.from}:${p.to}`===`${from}:${to}`)){
-        const pendingPromotion={from,to,colon:promotion[0].color}
+    const promotions = chess.moves({ verbose: true }).filter(m => m.promotion)
+    if (promotions.some(p => `${p.from}:${p.to}` === `${from}:${to}`)) {
+        const pendingPromotion = { from, to, color: promotions[0].color }
         updateGame(pendingPromotion)
     }
     const {pendingPromotion}=gameSubject.getValue()
@@ -22,10 +22,14 @@ export function handleMove(from,to){
     }
 
 }
-export function move(from,to){
-    const legalMove=chess.move({from,to})
+export function move(from,to,promotion){
+    let tempMove={from,to}
+    if(promotion){
+        tempMove.promotion=promotion
+    }
+    const legalMove=chess.move(tempMove)
     if(legalMove){
-       updateGame()
+       updateGame(from,to)
     }
 
 

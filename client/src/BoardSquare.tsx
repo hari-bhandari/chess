@@ -17,6 +17,8 @@ const SquareContainer=styled.div`
 `
 const BoardSquare:React.FC<props> = ({piece,black,getPosition}) => {
     const [promotion,setPromotion]=useState<any>(null)
+    useEffect(()=>{
+    },[promotion])
     const[,drop]=useDrop({
         accept:'piece',
         drop:(item)=>{
