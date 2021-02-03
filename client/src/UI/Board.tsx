@@ -26,12 +26,20 @@ const Board:React.FC<propsInterface> = ({board}) => {
         const { x, y } = getXYPosition(i)
         return (x + y) % 2 === 1
     }
+    function getPosition(i:number) {
+        const { x, y } = getXYPosition(i)
+        const letter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'][
+            x
+            ]
+        return `${letter}${y + 1}`
+    }
     return (
         <BoardContainer>
             {board?.flat().map((piece,i:number)=><Square key={i}>
                 <BoardSquare
                 piece={piece}
                 black={isBlack(i)}
+                getPosition={getPosition(i)}
             /></Square>)}
         </BoardContainer>
     );

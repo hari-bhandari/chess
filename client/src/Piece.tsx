@@ -1,42 +1,50 @@
 import React from 'react';
-import {useDrag} from 'react-dnd'
+import {useDrag, DragPreviewImage} from 'react-dnd'
 import styled from "styled-components";
-interface props{
-    piece:PieceInterface
+
+interface props {
+    piece: PieceInterface,
+    position:string
 }
+
 interface PieceInterface {
-    type:string,
-    color:string
+    type: string,
+    color: string
 }
-const PieceContainer=styled.div`
+
+const PieceContainer = styled.div<{isDragging:boolean}>`
   width: 100%;
   height: 100%;
-  &:hover{
+  opacity: ${props => props.isDragging?0:1};
+  &:hover {
     cursor: move;
   }
+
   display: flex;
   justify-content: center;
   justify-items: center;
-  img{
+
+  img {
     max-width: 90%;
     max-height: 90%;
-    user-drag: none;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
+   
   }
 `
-const Piece:React.FC<props> = ({piece:{type,color}}) => {
-    const [ ,drag]=useDrag({
-        item:{type:'piece',id:`${type}_${color}`},
+const Piece: React.FC<props> = ({piece: {type, color},position}) => {
+    const [{isDragging}, drag, preview] = useDrag({
+        item: {type: 'piece', id: `${position}_${type}_${color}`},
+        collect:(monitor => {
+            return{isDragging:!!monitor.isDragging()}
+        })
     })
-    const path=require(`./assets/${color.toLowerCase()}${type.toUpperCase()}.svg`).default
+    const path = require(`./assets/${color.toLowerCase()}${type.toUpperCase()}.svg`).default
     return (
-        <PieceContainer ref={drag}>
-            <img src={path} alt={type}/>
-        </PieceContainer>
+        <>
+            <DragPreviewImage connect={preview} src={path}/>
+            <PieceContainer ref={drag} isDragging={isDragging}>
+                <img src={path} alt={type}/>
+            </PieceContainer>
+        </>
     );
 };
 
