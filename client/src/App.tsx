@@ -3,7 +3,7 @@ import './App.css';
 import styled, {ThemeProvider} from "styled-components";
 import theme from "./styles/theme";
 import GlobalStyles from "./styles/GlobalStyle";
-import {gameSubject} from "./game";
+import {gameSubject, initGame} from "./game";
 import Board from "./UI/Board";
 
 const Container = styled.div`
@@ -23,6 +23,7 @@ const BoardContainer = styled.div`
 function App() {
     const [board, setBoard] = useState<any>([])
     useEffect(() => {
+        initGame()
         const subscribe = gameSubject.subscribe(game => setBoard(game.board))
         return () => subscribe.unsubscribe()
     }, [])

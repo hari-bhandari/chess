@@ -3,7 +3,7 @@ import Square from "./Square";
 import Piece from "./Piece";
 import styled from "styled-components";
 import {useDrop} from "react-dnd";
-import {move} from './game'
+import {handleMove} from './game'
 interface props{
     piece:any;
     black:boolean,
@@ -19,7 +19,7 @@ const BoardSquare:React.FC<props> = ({piece,black,getPosition}) => {
         drop:(item)=>{
             // @ts-ignore
             const [FromPosition]=item.id.split('_')
-            move(FromPosition,getPosition)
+            handleMove(FromPosition,getPosition)
         }
     })
     return (
