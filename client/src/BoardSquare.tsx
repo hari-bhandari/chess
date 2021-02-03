@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Square from "./Square";
 import Piece from "./Piece";
 import styled from "styled-components";
 import {useDrop} from "react-dnd";
 import {handleMove} from './game'
+import {gameSubject} from "./game";
+import Promote from "./Promote";
 interface props{
     piece:any;
     black:boolean,
@@ -14,6 +16,7 @@ const SquareContainer=styled.div`
   height: 100%;
 `
 const BoardSquare:React.FC<props> = ({piece,black,getPosition}) => {
+    const [promotion,setPromotion]=useState<any>(null)
     const[,drop]=useDrop({
         accept:'piece',
         drop:(item)=>{
@@ -22,11 +25,17 @@ const BoardSquare:React.FC<props> = ({piece,black,getPosition}) => {
             handleMove(FromPosition,getPosition)
         }
     })
+    useEffect(()=>{
+       // @ts-ignore
+        const subscribe=gameSubject.subscribe(({pendingPromotion})=>pendingPromotion&&pendingPromotion.to===getPosition?setPromotion(pendingPromotion):setPromotion(null))
+        return ()=>subscribe.unsubscribe()
+    },[])
     return (
         <SquareContainer ref={drop}>
+            {promotion?<Promote/>:
             <Square black={black}>
                 {piece&&<Piece piece={piece} position={getPosition}/>}
-            </Square>
+            </Square>}
             
         </SquareContainer>
     );

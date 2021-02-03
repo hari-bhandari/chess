@@ -11,10 +11,14 @@ export const initGame=()=>{
 export function handleMove(from,to){
     const promotion=chess.moves({verbose:true}).filter(m=>m.promotion)
     if(promotion.some(p=>`${p.from}:${p.to}`===`${from}:${to}`)){
-        console.log('going for promotion')
+        const pendingPromotion={from,to,colon:promotion[0].color}
+        updateGame(pendingPromotion)
     }
-    console.table(promotion)
-    move(from,to)
+    const {pendingPromotion}=gameSubject.getValue()
+    if(!pendingPromotion){
+        move(from,to)
+
+    }
 
 }
 export function move(from,to){
@@ -25,9 +29,10 @@ export function move(from,to){
 
 
 }
-const updateGame=()=>{
+const updateGame=(pendingPromotion)=>{
     const newGame={
-        board:chess.board()
+        board:chess.board(),
+        pendingPromotion
     }
     gameSubject.next(newGame)
 
