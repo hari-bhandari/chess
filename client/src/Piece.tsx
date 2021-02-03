@@ -26,9 +26,8 @@ const PieceContainer = styled.div<{isDragging?:boolean}>`
   justify-items: center;
 
   img {
-    max-width: 90%;
-    max-height: 90%;
-   
+    max-width: 100%;
+    max-height: 100%;
   }
 `
 const Piece: React.FC<props> = ({piece: {type, color},position,promote}) => {

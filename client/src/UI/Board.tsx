@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from "styled-components";
 import BoardSquare from "../BoardSquare";
 interface propsInterface {
