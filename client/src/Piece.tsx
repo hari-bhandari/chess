@@ -2,7 +2,6 @@ import React from 'react';
 import {useDrag, DragPreviewImage} from 'react-dnd'
 import styled from "styled-components";
 // @ts-ignore
-import { usePreview } from 'react-dnd-preview'
 
 interface props {
     piece: PieceInterface,
@@ -44,7 +43,6 @@ const Piece: React.FC<props> = ({piece: {type, color},position,promote,onClickPr
             return { isDragging: !!monitor.isDragging() }
         },
     })
-    const UsePreview=usePreview(preview)
     const path = require(`./assets/${color.toLowerCase()}${type.toUpperCase()}.svg`).default
 
     if(promote){
@@ -60,6 +58,7 @@ const Piece: React.FC<props> = ({piece: {type, color},position,promote,onClickPr
     return (
         <>
             {/*<UsePreview />*/}
+            <DragPreviewImage connect={preview} src={path}/>
             <PieceContainer ref={drag} isDragging={isDragging}>
                 <img src={path} alt={type}/>
             </PieceContainer>

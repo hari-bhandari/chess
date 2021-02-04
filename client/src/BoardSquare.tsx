@@ -32,7 +32,7 @@ const BoardSquare:React.FC<props> = ({piece,black,getPosition}) => {
     }
     useEffect(()=>{
        // @ts-ignore
-        const subscribe=gameSubject.subscribe(({pendingPromotion})=>pendingPromotion&&pendingPromotion.to===getPosition?setPromotion(pendingPromotion):setPromotion(null))
+        const subscribe=gameSubject.subscribe(({pendingPromotion})=>pendingPromotion&&pendingPromotion?.to===getPosition?setPromotion(pendingPromotion):setPromotion(null))
         return ()=>subscribe.unsubscribe()
     },[])
     return (
