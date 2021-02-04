@@ -7,6 +7,7 @@ import {gameSubject, initGame} from "./game";
 import Board from "./UI/Board";
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
+import RestartGame from "./RestartGame";
 const Container = styled.div`
   min-height: 100vh;
   display: flex;
@@ -43,7 +44,8 @@ function App() {
                     <Board board={board}/>
                         </BoardContainer></Container>):(
                         <Modal open={isGameOver} onClose={()=>setIsGameOver(false)}>
-    sdfd
+
+    <RestartGame/>
                         </Modal>)}
             </ThemeProvider>
     );
