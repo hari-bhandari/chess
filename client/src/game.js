@@ -1,6 +1,10 @@
 import * as Chess from 'chess.js'
 import {BehaviorSubject} from "rxjs";
-const promotion='rnb2bnr/pppPkppp/8/4p3/7q/8/PPPP1PPP/RNBQKBNR w KQ - 1 5'
+let promotion = 'rnb2bnr/pppPkppp/8/4p3/7q/8/PPPP1PPP/RNBQKBNR w KQ - 1 5'
+let staleMate = "4k3/4P3/4K3/8/8/8/8/8 b - - 0 78"
+let checkMate = 'rnblkbnr/pppplppp/8/4p3/5PPq/8/PPPPP2P/RNBQKBNR w KQkq - 1 3'
+let insuficcientMaterial = 'k7/8/n7/8/8/8/8/7K b - - 0 1'
+
 const chess=new Chess(promotion);
 export const gameSubject=new BehaviorSubject({
     board:chess.board()
@@ -9,27 +13,28 @@ export const gameSubject=new BehaviorSubject({
 export const initGame=()=>{
     updateGame()
 }
-export function handleMove(from,to){
+export function handleMove(from, to) {
     const promotions = chess.moves({ verbose: true }).filter(m => m.promotion)
+    console.table(promotions)
     if (promotions.some(p => `${p.from}:${p.to}` === `${from}:${to}`)) {
         const pendingPromotion = { from, to, color: promotions[0].color }
         updateGame(pendingPromotion)
     }
-    const {pendingPromotion}=gameSubject.getValue()
-    if(!pendingPromotion){
-        move(from,to)
+    const { pendingPromotion } = gameSubject.getValue()
 
+    if (!pendingPromotion) {
+        move(from, to)
     }
-
 }
 export function move(from,to,promotion){
-    let tempMove={from,to}
-    if(promotion){
-        tempMove.promotion=promotion
+    let tempMove = { from, to }
+    if (promotion) {
+        tempMove.promotion = promotion
     }
-    const legalMove=chess.move(tempMove)
-    if(legalMove){
-       updateGame(from,to)
+    const legalMove = chess.move(tempMove)
+
+    if (legalMove) {
+        updateGame()
     }
 
 

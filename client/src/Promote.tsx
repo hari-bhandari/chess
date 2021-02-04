@@ -37,7 +37,7 @@ const Promote: React.FC<{ promotion: Promotion, closeTab: () => void }> = ({prom
     return (
         <PromoteContainer bottom={false}>
             {promotionPieces.map((p,i)=>(
-                <div><Piece piece={{color,type:p}}/></div>
+                <div onClick={()=>move(from,to,p)} key={i}><Piece piece={{color,type:p}}/></div>
             ))}
             <span onClick={closeTab}>X</span>
 
