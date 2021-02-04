@@ -38,10 +38,33 @@ export function move(from,to,promotion){
 
 }
 const updateGame=(pendingPromotion)=>{
+    const isGameOver=chess.game_over()
     const newGame={
         board:chess.board(),
-        pendingPromotion
+        pendingPromotion,
+        isGameOver,
+        result:isGameOver?getGameResult():null
     }
     gameSubject.next(newGame)
 
+}
+const getGameResult=()=>{
+    if(chess.in_checkmate()){
+        const winner=chess.turn()==="w"?"BLACK":"WHITE"
+        return `CHECKMATE- ${winner} won`
+    }else if(chess.in_draw()){
+        let reason='50 - MOVES -RULE'
+        if(chess.in_stalemate()){
+            reason="Stalemate"
+        }
+        else if (chess.in_threefold_repetition()){
+            reason="REPETITION"
+        }else if(chess.insufficient_material()){
+            reason="Insufficient Material"
+        }
+        return `${reason} --DRAW`
+    }
+    else {
+        return `You're Something special`
+    }
 }
