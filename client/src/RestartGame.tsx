@@ -72,11 +72,11 @@ const Button = styled.button`
   }
 
 `
-const RestartGame:React.FC<{result:string | null | undefined}> = ({result}) => {
+const RestartGame:React.FC<{result:string | null | undefined,resetGame:()=>void}> = ({result,resetGame}) => {
     return (
         <RestartContainer>
             <h2>{result}</h2>
-            <Button>Play Again</Button>
+            <Button onClick={resetGame}>Play Again</Button>
             <Button>Restart game</Button>
             <Button>see the end game</Button>
         </RestartContainer>

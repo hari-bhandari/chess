@@ -3,7 +3,7 @@ import './App.css';
 import styled, {ThemeProvider} from "styled-components";
 import theme from "./styles/theme";
 import GlobalStyles from "./styles/GlobalStyle";
-import {gameSubject, initGame} from "./game";
+import {gameSubject, initGame,resetGame} from "./game";
 import Board from "./UI/Board";
 import 'react-responsive-modal/styles.css';
 import {Modal} from 'react-responsive-modal';
@@ -46,7 +46,7 @@ function App() {
                     </BoardContainer>
                 <Modal open={isGameOver} onClose={() => setIsGameOver(false)} styles={{modal:{backgroundColor:"#111111"},closeButton:{backgroundColor:"white"}}}
                 >
-                    <RestartGame result={result}/>
+                    <RestartGame result={result} resetGame={()=>{resetGame() }}/>
                 </Modal>
             </ThemeProvider>
         </Container>

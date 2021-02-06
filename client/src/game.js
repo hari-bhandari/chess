@@ -68,3 +68,7 @@ const getGameResult=()=>{
         return `You're Something special`
     }
 }
+export const resetGame=()=>{
+    chess.reset()
+    updateGame()
+}
