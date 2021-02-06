@@ -15,6 +15,7 @@ const RestartContainer = styled.div`
     justify-items: center;
     justify-content: center;
     margin: 20px 40px;
+    color: white;
 
     img {
       width: 50px;
@@ -35,10 +36,10 @@ const Button = styled.button`
   font-size: inherit;
   font-family: inherit;
   font-weight: 600;
-  color: #382b22;
+  color: #f5f5f5;
   text-transform: uppercase;
   padding: 1.25em 2em;
-  background: #fff0f0;
+  background: #39291C;
   border: 2px solid #b18597;
   border-radius: 0.75em;
   transform-style: preserve-3d;
@@ -53,7 +54,7 @@ const Button = styled.button`
     left: 0;
     right: 0;
     bottom: 0;
-    background: #f9c4d2;
+    background: #a16b41;
     border-radius: inherit;
     box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
     transform: translate3d(0, 0.75em, -1em);
@@ -66,7 +67,7 @@ const Button = styled.button`
   }
 
   &:hover {
-    background: #ffe9e9;
+    background: #5C4D3C;
     transform: translate(0, 0.25em);
   }
 

@@ -44,7 +44,7 @@ function App() {
                    <BoardContainer>
                         <Board board={board}/>
                     </BoardContainer>
-                <Modal open={isGameOver} onClose={() => setIsGameOver(false)} styles={{modal:{backgroundImage:"url(https://images2.alphacoders.com/984/thumb-350-984589.jpg)"}}}
+                <Modal open={isGameOver} onClose={() => setIsGameOver(false)} styles={{modal:{backgroundColor:"#111111"},closeButton:{backgroundColor:"white"}}}
                 >
                     <RestartGame result={result}/>
                 </Modal>
