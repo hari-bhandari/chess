@@ -10,7 +10,7 @@ interface props{
     piece:any;
     black:boolean,
     getPosition:string,
-    getPossibleMoves:()=>void
+    getPossibleMoves:(getPosition:string)=>void
 }
 const SquareContainer=styled.div`
   width: 100%;
@@ -42,7 +42,7 @@ const BoardSquare:React.FC<props> = ({piece,black,getPosition,getPossibleMoves})
         return ()=>subscribe.unsubscribe()
     },[])
     return (
-        <SquareContainer ref={drop} onClick={()=>getPossibleMovesForASquare(getPosition)} >
+        <SquareContainer ref={drop} onClick={()=>getPossibleMoves(getPosition)} >
             {promotion?<Promote promotion={promotion} closeTab={closeTab}/>:
             <Square black={black}  position={getPosition} >
                 {piece&&<Piece piece={piece} position={getPosition}/>}

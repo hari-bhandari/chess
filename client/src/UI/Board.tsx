@@ -17,6 +17,24 @@ const Square=styled.div`
 `
 
 const Board:React.FC<propsInterface> = ({board}) => {
+    const getPossibleMoves=(getPosition:string)=>{
+        console.log('sd')
+        ChangeStyles(getPossibleMovesForASquare(getPosition))
+        return getPossibleMovesForASquare(getPosition)
+    }
+    //loop over and change colour of the squares
+    const ChangeStyles=(list:[]|undefined)=>{
+        console.log(list)
+        if(list!==null||list!==undefined){
+            //change the bg of the squares
+            list?.forEach(value => {
+                // @ts-ignore
+                console.log(value)
+                // @ts-ignore
+                document.getElementById(value).style.backgroundColor="red"
+            })
+        }
+    }
     function getXYPosition(i:number) {
         const x = i% 8
         const y = Math.abs(Math.floor(i / 8) - 7)
@@ -35,9 +53,6 @@ const Board:React.FC<propsInterface> = ({board}) => {
         return `${letter}${y + 1}`
     }
 
-    const getPossibleMoves=()=>{
-        return getPossibleMovesForASquare(getPosition)
-    }
     return (
         <BoardContainer>
             {board?.flat().map((piece,i:number)=><Square key={i}>
