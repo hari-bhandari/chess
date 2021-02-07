@@ -7,12 +7,12 @@ import connectDB from './config/db.js'
 import {errorHandler} from './middlewares/error.js'
 const app=express()
 import auth from './routes/auth.js'
-import {Server} from 'http'
-import socket from 'socket.io'
+import * as io from "socket.io"
+import { createServer } from 'http';
 app.use(express.json());
 //initializing socket.io
-const http=Server(app)
-const io=socket(http)
+const Server = createServer(app);
+const socketio = new io.Server(Server);
 
 const PORT= process.env.PORT||5000
 connectDB()
@@ -30,7 +30,9 @@ app.use(cors())
 app.use('/api/auth',auth)
 //error
 app.use(errorHandler)
-
+socketio.on('connection',function (socket){
+    console.log('a user connected')
+})
 //implementing error handler
 const server=app.listen(PORT,()=>console.log(`server running in Production mode on port ${PORT}`))
 
