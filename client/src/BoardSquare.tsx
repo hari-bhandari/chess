@@ -4,18 +4,19 @@ import Piece from "./Piece";
 import styled from "styled-components";
 import {useDrop} from "react-dnd";
 import {handleMove} from './game'
-import {gameSubject} from "./game";
+import {gameSubject,getPossibleMovesForASquare} from "./game";
 import Promote from "./Promote";
 interface props{
     piece:any;
     black:boolean,
-    getPosition:string
+    getPosition:string,
+    getPossibleMoves:()=>void
 }
 const SquareContainer=styled.div`
   width: 100%;
   height: 100%;
 `
-const BoardSquare:React.FC<props> = ({piece,black,getPosition}) => {
+const BoardSquare:React.FC<props> = ({piece,black,getPosition,getPossibleMoves}) => {
     const [promotion,setPromotion]=useState<any>(null)
     useEffect(()=>{
     },[promotion])
@@ -27,18 +28,23 @@ const BoardSquare:React.FC<props> = ({piece,black,getPosition}) => {
             handleMove(FromPosition,getPosition)
         }
     })
+
     const closeTab=()=>{
         setPromotion(null)
     }
+    //function to declare weather the square is a potential move or not
+    const isSquareAPotentialMove=()=>{
+
+    }
     useEffect(()=>{
        // @ts-ignore
-        const subscribe=gameSubject.subscribe(({pendingPromotion})=>pendingPromotion&&pendingPromotion?.to===getPosition?setPromotion(pendingPromotion):setPromotion(null))
+        const subscribe=gameSubject.subscribe((value)=>value?.pendingPromotion&&pendingPromotion?.to===getPosition?setPromotion(pendingPromotion):setPromotion(null))
         return ()=>subscribe.unsubscribe()
     },[])
     return (
-        <SquareContainer ref={drop}>
+        <SquareContainer ref={drop} onClick={()=>getPossibleMovesForASquare(getPosition)} >
             {promotion?<Promote promotion={promotion} closeTab={closeTab}/>:
-            <Square black={black}>
+            <Square black={black}  position={getPosition} >
                 {piece&&<Piece piece={piece} position={getPosition}/>}
             </Square>}
             

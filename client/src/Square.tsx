@@ -2,7 +2,8 @@ import React from 'react';
 import styled from "styled-components";
 interface props{
     children:any,
-    black:boolean
+    black:boolean,
+    position?:string
 }
 
 const SquareContainer=styled.div<{isBlack:boolean}>`
@@ -10,9 +11,9 @@ const SquareContainer=styled.div<{isBlack:boolean}>`
   height: 100%;
   background-color: ${p => p.isBlack?p.theme.black:p.theme.white};
 `
-const Square:React.FC<props> = ({children,black}) => {
+const Square:React.FC<props> = ({children,black,position}) => {
     return (
-        <SquareContainer isBlack={black}>
+        <SquareContainer isBlack={black} id={position}>
             {children}
         </SquareContainer>
     );

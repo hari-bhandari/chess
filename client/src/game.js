@@ -1,5 +1,6 @@
 import * as Chess from 'chess.js'
 import {BehaviorSubject} from "rxjs";
+import {useState} from "react";
 
 const chess=new Chess();
 export const  gameSubject=new BehaviorSubject();
@@ -19,10 +20,14 @@ export function handleMove(from, to) {
         updateGame(pendingPromotion)
     }
     const { pendingPromotion } = gameSubject.getValue()
-
     if (!pendingPromotion) {
         move(from, to)
     }
+}
+export const getPossibleMovesForASquare=(square)=>{
+    const moves=chess.moves({square})
+    console.log(moves)
+    return moves
 }
 export function move(from,to,promotion){
     let tempMove = { from, to }
@@ -43,7 +48,8 @@ const updateGame=(pendingPromotion)=>{
         board:chess.board(),
         pendingPromotion,
         isGameOver,
-        result:isGameOver?getGameResult():null
+        result:isGameOver?getGameResult():null,
+        turn:chess.turn()
     }
     localStorage.setItem('savedGame',chess.fen())
     gameSubject.next(newGame)

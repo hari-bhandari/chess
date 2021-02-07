@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import styled from "styled-components";
 import BoardSquare from "../BoardSquare";
+import {getPossibleMovesForASquare} from "../game";
 interface propsInterface {
     board:[]|null
 }
@@ -33,6 +34,10 @@ const Board:React.FC<propsInterface> = ({board}) => {
             ]
         return `${letter}${y + 1}`
     }
+
+    const getPossibleMoves=()=>{
+        return getPossibleMovesForASquare(getPosition)
+    }
     return (
         <BoardContainer>
             {board?.flat().map((piece,i:number)=><Square key={i}>
@@ -40,6 +45,7 @@ const Board:React.FC<propsInterface> = ({board}) => {
                 piece={piece}
                 black={isBlack(i)}
                 getPosition={getPosition(i)}
+                getPossibleMoves={getPossibleMoves}
             /></Square>)}
         </BoardContainer>
     );
