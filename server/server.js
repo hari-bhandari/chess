@@ -7,7 +7,12 @@ import connectDB from './config/db.js'
 import {errorHandler} from './middlewares/error.js'
 const app=express()
 import auth from './routes/auth.js'
+import {Server} from 'http'
+import socket from 'socket.io'
 app.use(express.json());
+//initializing socket.io
+const http=Server(app)
+const io=socket(http)
 
 const PORT= process.env.PORT||5000
 connectDB()
