@@ -3,11 +3,12 @@ import './App.css';
 import styled, {ThemeProvider} from "styled-components";
 import theme from "./styles/theme";
 import GlobalStyles from "./styles/GlobalStyle";
-import {gameSubject, initGame,resetGame} from "./game";
+import {gameSubject, initGame, resetGame} from "./game";
 import Board from "./UI/Board/Board";
 import 'react-responsive-modal/styles.css';
 import {Modal} from 'react-responsive-modal';
 import RestartGame from "./UI/Board/RestartGame";
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -37,19 +38,30 @@ function App() {
         return () => subscribe.unsubscribe()
     }, [])
     return (
-        <Container>
 
-            <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
+            <Router>
+                <Switch>
+                    <Route path='/board' exact component={() => (
+                        <Container>
+                            <BoardContainer>
+                                <Board board={board}/>
+                            </BoardContainer>
+                            <Modal open={isGameOver} onClose={() => setIsGameOver(false)}
+                                   styles={{modal: {backgroundColor: "#111111"}, closeButton: {backgroundColor: "white"}}}>
+                                <RestartGame result={result} resetGame={() => {
+                                    resetGame()
+                                }}/>
+                            </Modal>
+                        </Container>
+                    )}/>
+
+                </Switch>
                 <GlobalStyles/>
-                   <BoardContainer>
-                        <Board board={board}/>
-                    </BoardContainer>
-                <Modal open={isGameOver} onClose={() => setIsGameOver(false)} styles={{modal:{backgroundColor:"#111111"},closeButton:{backgroundColor:"white"}}}
-                >
-                    <RestartGame result={result} resetGame={()=>{resetGame() }}/>
-                </Modal>
-            </ThemeProvider>
-        </Container>
+
+
+            </Router>
+        </ThemeProvider>
     );
 }
 
