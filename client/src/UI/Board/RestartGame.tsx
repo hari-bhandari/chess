@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
-import White from './assets/wK.svg'
-import Black from './assets/bK.svg'
+import White from '../../assets/wK.svg'
+import Black from '../../assets/bK.svg'
 
 const RestartContainer = styled.div`
   width: 100%;

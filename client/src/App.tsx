@@ -4,10 +4,10 @@ import styled, {ThemeProvider} from "styled-components";
 import theme from "./styles/theme";
 import GlobalStyles from "./styles/GlobalStyle";
 import {gameSubject, initGame,resetGame} from "./game";
-import Board from "./UI/Board";
+import Board from "./UI/Board/Board";
 import 'react-responsive-modal/styles.css';
 import {Modal} from 'react-responsive-modal';
-import RestartGame from "./RestartGame";
+import RestartGame from "./UI/Board/RestartGame";
 
 const Container = styled.div`
   min-height: 100vh;

@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import Square from "./Square";
-import Piece from "./Piece";
+import Piece from "../../Piece";
 import styled from "styled-components";
 import {useDrop} from "react-dnd";
-import {handleMove} from './game'
-import {gameSubject,getPossibleMovesForASquare} from "./game";
+import {handleMove} from '../../game'
+import {gameSubject,getPossibleMovesForASquare} from "../../game";
 import Promote from "./Promote";
 interface props{
     piece:any;

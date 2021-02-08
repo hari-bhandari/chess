@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import styled from "styled-components";
-import BoardSquare from "../BoardSquare";
-import {getPossibleMovesForASquare} from "../game";
+import BoardSquare from "./BoardSquare";
+import {getPossibleMovesForASquare} from "../../game";
 interface propsInterface {
     board:[]|null
 }
@@ -18,9 +18,12 @@ const Square=styled.div`
 
 const Board:React.FC<propsInterface> = ({board}) => {
     const getPossibleMoves=(getPosition:string)=>{
-        console.log('sd')
-        ChangeStyles(getPossibleMovesForASquare(getPosition))
-        return getPossibleMovesForASquare(getPosition)
+        const possibleMoves=getPossibleMovesForASquare(getPosition)
+        if(possibleMoves.length>0){
+            ChangeStyles(getPossibleMovesForASquare(getPosition))
+
+        }
+
     }
     //loop over and change colour of the squares
     const ChangeStyles=(list:[]|undefined)=>{

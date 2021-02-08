@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
-import Piece from "./Piece";
-import {move} from "./game";
+import Piece from "../../Piece";
+import {move} from "../../game";
 
 interface Promotion {
     from: string,
