@@ -82,4 +82,54 @@ export const ButtonGroup = styled(Flex)<{ float?: string }>`
   ${p => ButtonGroupFloat[p.float || 'right']}
 `;
 
+export const HomeWrapper = styled.section`
+  
+  @media screen and (${p => p.theme.media.tablet}) {
+    
+    .flex-container{
+      flex-direction: column;
+    }
+
+  }
+}
+  .home__left {
+    flex: 0.5;
+    min-height: 100vh;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: ${p => p.theme.colors.primary};
+    color: ${p => p.theme.colors.white};
+    .home__text {
+      margin-left: -50px;
+      z-index: 1;
+    }
+  
+    @media screen and (${p => p.theme.media.tablet}) {
+      min-height: 45vh;
+      width: 100%;
+      .home__text {
+        margin-left: 0px;
+      }
+      .flex-container{
+        flex-direction: column;
+      }
+      
+    }
+  }
+  .home__right {
+    flex: 0.5;
+  }
+  .home__shape {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    z-index: 1;
+  }
+`;
 export default Button;

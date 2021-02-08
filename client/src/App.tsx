@@ -9,6 +9,7 @@ import 'react-responsive-modal/styles.css';
 import {Modal} from 'react-responsive-modal';
 import RestartGame from "./UI/Board/RestartGame";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Login from "./UI/Auth/Login/Login";
 
 const Container = styled.div`
   min-height: 100vh;
@@ -42,6 +43,7 @@ function App() {
         <ThemeProvider theme={theme}>
             <Router>
                 <Switch>
+                    <Route path='/' exact component={Login}/>
                     <Route path='/board' exact component={() => (
                         <Container>
                             <BoardContainer>
