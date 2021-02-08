@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components/macro';
 import Flex from "../../../Components/Styles/Flex";
 import colorVariants, {VariantTypes} from "../../../Components/Styles/ColorVarients";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface StyledButtonProps {
     variant?: VariantTypes;
@@ -61,11 +62,12 @@ export const Button: React.FC<ButtonProps> = ({variant = 'primary', size, width,
         disabled={isLoading}
         width={width}
     >
-        {icon && (<div></div>            // <FontAwesomeIcon
-            //     data-testid="icon"
-            //     spin={isLoading}
-            //     icon={isLoading ? 'spinner' : icon}
-            // />
+        {icon && (
+            <FontAwesomeIcon
+                data-testid="icon"
+                spin={isLoading}
+                icon={isLoading ? 'spinner' : icon}
+            />
         )}
         {children}
     </StyledButton>
